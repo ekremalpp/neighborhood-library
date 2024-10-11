@@ -24,6 +24,7 @@ public class NeighborhoodLibrary {
                     break;
                 case "3":
                     System.out.println("Signing out...");
+
                     break;
                 default:
                     System.out.println("Invalid selection, please try again.");
@@ -61,10 +62,12 @@ public class NeighborhoodLibrary {
         for(Book book:inventory){
             if(!book.isCheckedOut()) {
                 System.out.println("ID:" + book.getId()+",ISBN:"+ book.getIsbn()+"Heading:" + book.getTitle());
-
             }
         }
         String input = scanner.nextLine();
+
+
+
         if(!input.equalsIgnoreCase("X")) {
             int id =Integer.parseInt(input);
             System.out.print("Enter your name: ");
@@ -82,11 +85,24 @@ public class NeighborhoodLibrary {
     }
     private static void showCheckedOutBooks(Scanner scanner) {
         System.out.println(" Broweed Books:");
-        for(Book book:inventory) {
+        for (Book book : inventory) {
             if(book.isCheckedOut()) {
                 System.out.println("ID:" + book.getId() + "ISBNE:"+book.getIsbn()+"Heading" +book.getTitle() + "Borrower"+book.getCheckedOutTo());
 
             }
+        }
+        System.out.println("Enter the ID of the book you want to return or press 'X' to exit");
+        String input = scanner.nextLine();
+        if(!input.equalsIgnoreCase("X")) {
+            int id = Integer.parseInt(input);
+            for(Book book : inventory) {
+                if(book.getId()== id && book.isCheckedOut()) {
+                    book.checkIn();
+                    System.out.println(book.getTitle() + "successfully returned");
+                    return;
+                }
+            }
+            System.out.println("Invalid ID or book has already been returned");
         }
     }
 

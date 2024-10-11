@@ -43,4 +43,15 @@ class Book {
         this.isCheckedOut = false;
         this.checkedOutTo = null;
     }
+
+    @Override
+    public String  toString() {
+        return "Book{" +
+                "id=" + id +
+                ", isbn='" + isbn + '\'' +
+                ", title='" + title + '\'' +
+                ", isCheckedOut=" + isCheckedOut +
+                ", checkedOutTo='" + checkedOutTo + '\'' +
+                '}';
+    }
 }
